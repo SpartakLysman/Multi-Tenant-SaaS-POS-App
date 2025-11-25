@@ -3,9 +3,19 @@
    </div>
 
 <h4>Production-Ready SaaS POS Platform for Malls, Supermarkets & Retail Chains using React, Spring Boot & MySQL.</h4>
-<br/>
 
-<h2>Description:</h2>
+
+<br/><br/><br/>
+<div align="center">
+ <h4>📌 image 📌</h4>
+  </div>
+
+
+
+<br/><br/><br/>
+<div align="center">
+  <h2>Description</h2>
+   </div>
 
 
 - ✅ Deployable POS system with cashier terminals;
