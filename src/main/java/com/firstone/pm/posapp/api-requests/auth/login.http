@@ -1,0 +1,13 @@
+### Login request to retrieve a token
+POST http://localhost:5000/auth/signup
+Content-Type: application/json
+
+{
+  "firstName": "Pablo",
+  "lastName": "Lysman",
+  "email": "pablolysman@gmail.com",
+  "password": "password123",
+  "role": "ROLE_STORE_MANAGER"
+}
+
+> {% client.global.set("token", response.body.token) %}
