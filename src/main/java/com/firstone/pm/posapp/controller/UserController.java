@@ -4,6 +4,7 @@ import com.firstone.pm.posapp.exceptions.UserException;
 import com.firstone.pm.posapp.mapper.UserMapper;
 import com.firstone.pm.posapp.model.User;
 import com.firstone.pm.posapp.payload.dto.UserDTO;
+import com.firstone.pm.posapp.payload.response.ApiResponse;
 import com.firstone.pm.posapp.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +33,15 @@ public class UserController {
         }
 
         return ResponseEntity.ok(UserMapper.toDTO(user));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse> deleteUser(@PathVariable Long id) throws UserException {
+        userService.deleteUser(id);
+        ApiResponse apiResponse = new ApiResponse();
+        apiResponse.setMessage("User deleted successfully");
+
+        return ResponseEntity.ok(apiResponse);
     }
 
 }

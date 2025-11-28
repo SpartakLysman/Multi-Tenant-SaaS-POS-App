@@ -1,0 +1,15 @@
+package com.firstone.pm.posapp.mapper;
+
+import com.firstone.pm.posapp.model.Category;
+import com.firstone.pm.posapp.payload.dto.CategoryDTO;
+
+public class CategoryMapper {
+
+    public static CategoryDTO toDTO(Category category) {
+        return CategoryDTO.builder()
+                .id(category.getId())
+                .name(category.getName())
+                .storeId(category.getStore() != null ? category.getStore().getId() : null)
+                .build();
+    }
+}

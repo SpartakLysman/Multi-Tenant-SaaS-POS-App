@@ -31,8 +31,8 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public StoreDTO getStoreById(Long id) throws Exception {
-        Store store = storeRepository.findById(id).orElseThrow(
+    public StoreDTO getStoreById(Long storeId) throws Exception {
+        Store store = storeRepository.findById(storeId).orElseThrow(
                 () -> new Exception("Store not found...")
         );
         return StoreMapper.toDTO(store);

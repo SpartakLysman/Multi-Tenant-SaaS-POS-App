@@ -64,4 +64,11 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+
+    @Override
+    public void deleteUser(Long id) throws UserException {
+        User user = getUserById(id);
+
+        userRepository.delete(user);
+    }
 }
