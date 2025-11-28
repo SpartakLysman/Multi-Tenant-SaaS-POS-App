@@ -25,9 +25,9 @@ public class CategoryController {
 
     @GetMapping("/store/{storeId}")
     public ResponseEntity<List<CategoryDTO>> getCategoriesByStoreId(
-            @PathVariable Long storeId) throws Exception {
+            @PathVariable Long storeId) {
         return ResponseEntity.ok(
-                categoryService.getCategoriesByStore(storeId)
+                categoryService.getCategoriesByStoreId(storeId)
         );
     }
 

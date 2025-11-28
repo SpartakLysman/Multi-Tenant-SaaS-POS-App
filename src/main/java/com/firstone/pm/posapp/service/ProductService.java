@@ -1,6 +1,5 @@
 package com.firstone.pm.posapp.service;
 
-import com.firstone.pm.posapp.model.Product;
 import com.firstone.pm.posapp.model.User;
 import com.firstone.pm.posapp.payload.dto.ProductDTO;
 
