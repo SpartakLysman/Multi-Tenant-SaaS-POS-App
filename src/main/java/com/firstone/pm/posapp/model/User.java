@@ -41,6 +41,9 @@ public class User {
     @Column(nullable = false)
     private String email;
 
+    @ManyToOne
+    private Store store;
+
     private String phoneNumber;
 
     private String address;
@@ -74,4 +77,6 @@ public class User {
 
     @Column(nullable = false)
     private String password;
+
+
 }
