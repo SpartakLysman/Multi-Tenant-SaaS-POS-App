@@ -13,9 +13,9 @@ public interface UserService {
 
     User getUserByEmail(String email) throws UserException;
 
-    User getUserById(Long id) throws UserException;
+    User getUserById(Long userId) throws UserException;
 
     List<User> getAllUsers();
 
-    void deleteUser(Long id) throws UserException;
+    void deleteUser(Long userId) throws UserException;
 }

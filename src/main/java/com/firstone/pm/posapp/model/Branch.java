@@ -1,10 +1,13 @@
 package com.firstone.pm.posapp.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -13,9 +16,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @Table(
-        name = "products"
+        name = "branches",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "branch_address_unique", columnNames = "address"),
+                @UniqueConstraint(name = "branch_phone_unique", columnNames = "phone")
+        }
 )
-public class Product {
+public class Branch {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,37 +32,37 @@ public class Product {
     private String name;
 
     @Column(nullable = false, unique = true)
-    private String sku;
+    private String address;
+
+    @Column(nullable = false, unique = true)
+    private String phone;
 
     @Column(nullable = false)
-    private String description;
+    private String email;
+
+    @ElementCollection
+    @Column(nullable = false)
+    private List<String> workingDays;
 
     @Column(nullable = false)
-    private String color;
-
-    private Double mrp;
+    private LocalTime openingTime;
 
     @Column(nullable = false)
-    private Double sellingPrice;
+    private LocalTime closingTime;
 
-    @Column(nullable = false)
-    private String brand;
-
-    @Column(nullable = false)
-    private String imageUrl;
-
-    @ManyToOne
-    private Category category;
-
-    @ManyToOne
-    private Store store;
-
+    @NotNull
     @PastOrPresent
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
     @PastOrPresent
     private LocalDateTime updatedAt;
+
+    @ManyToOne
+    private Store store;
+
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    private User manager;
 
     @PrePersist
     protected void onCreate() {

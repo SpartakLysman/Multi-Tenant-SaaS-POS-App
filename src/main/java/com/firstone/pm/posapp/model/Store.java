@@ -14,6 +14,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
+@Table(
+        name = "stores"
+)
 public class Store {
 
     @Id
