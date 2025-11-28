@@ -19,6 +19,7 @@ public class ProductMapper {
                 .brand(product.getBrand())
                 .storeId(product.getStore() != null? product.getStore().getId():null)
                 .category(CategoryMapper.toDTO(product.getCategory()))
+                .categoryId(product.getCategory() != null? product.getCategory().getId():null)
                 .imageUrl(product.getImageUrl())
                 .createdAt(product.getCreatedAt())
                 .updatedAt(product.getUpdatedAt())
