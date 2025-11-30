@@ -1,9 +1,5 @@
 package com.firstone.pm.posapp.payload.dto;
 
-import com.firstone.pm.posapp.model.Branch;
-import com.firstone.pm.posapp.model.Product;
-import jakarta.persistence.Column;
-import jakarta.persistence.ManyToOne;
 import lombok.*;
 
 import java.time.LocalDateTime;
