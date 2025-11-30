@@ -36,17 +36,17 @@ public class InventoryController {
         return ResponseEntity.ok(apiResponse);
     }
 
-    @GetMapping("api/{inventoryId}")
+    @GetMapping("/{inventoryId}")
     public ResponseEntity<InventoryDTO> getInventoryById(@PathVariable Long inventoryId) throws Exception {
         return ResponseEntity.ok(inventoryService.getInventoryById(inventoryId));
     }
 
-    @GetMapping("/api/branch/{branchId}")
+    @GetMapping("/branch/{branchId}")
     public ResponseEntity<List<InventoryDTO>> getInventoryByBranchId(@PathVariable Long branchId) {
         return ResponseEntity.ok(inventoryService.getAllInventoryByBranchId(branchId));
     }
 
-    @GetMapping("/api/product/{productId}/branch/{branchId}")
+    @GetMapping("/product/{productId}/branch/{branchId}")
     public ResponseEntity<InventoryDTO> getInventoryByProductIdAndBranchId(@PathVariable Long productId,
                                                                            @PathVariable Long branchId) {
         return ResponseEntity.ok(inventoryService.getInventoryByProductIdAndBranchId(productId, branchId));
