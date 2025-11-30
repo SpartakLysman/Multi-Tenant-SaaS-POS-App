@@ -5,6 +5,7 @@ import com.firstone.pm.posapp.domain.PaymentType;
 import com.firstone.pm.posapp.mapper.OrderMapper;
 import com.firstone.pm.posapp.model.*;
 import com.firstone.pm.posapp.payload.dto.OrderDTO;
+import com.firstone.pm.posapp.repository.OrderItemRepository;
 import com.firstone.pm.posapp.repository.OrderRepository;
 import com.firstone.pm.posapp.repository.ProductRepository;
 import com.firstone.pm.posapp.service.OrderService;
@@ -25,6 +26,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final UserService userService;
     private final ProductRepository productRepository;
+    private final OrderItemRepository orderItemRepository;
 
     @Override
     public OrderDTO createOrder(OrderDTO orderDTO) throws Exception {
@@ -48,10 +50,11 @@ public class OrderServiceImpl implements OrderService {
                     Product product = productRepository.findById(orderItemDTO.getProductId())
                             .orElseThrow(() -> new EntityNotFoundException("Product does not found"));
 
+                    // return orderItemRepository.save(orderItem);
                     return OrderItem.builder()
                             .product(product)
                             .quantity(orderItemDTO.getQuantity())
-                            .price(orderItemDTO.getPrice() * orderItemDTO.getQuantity())
+                            .price(product.getSellingPrice() * orderItemDTO.getQuantity())
                             .order(order)
                             .build();
                 }).toList();
