@@ -44,6 +44,9 @@ public class User {
     @ManyToOne
     private Store store;
 
+    @ManyToOne
+    private Branch branch;
+
     private String phoneNumber;
 
     private String address;
@@ -58,7 +61,7 @@ public class User {
     private LocalDate dateOfBirth;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
     private UserRole role;
 
     @NotNull
@@ -77,4 +80,16 @@ public class User {
 
     @Column(nullable = false)
     private String password;
+
+    @PrePersist
+    protected void onCreate() {
+        registeredAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
 }
+
+

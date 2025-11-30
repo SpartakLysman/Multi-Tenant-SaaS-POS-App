@@ -37,4 +37,8 @@ public class UserDTO {
     private String profileImageId;
 
     private String password;
+
+    private Long branchId;
+
+    private Long storeId;
 }
