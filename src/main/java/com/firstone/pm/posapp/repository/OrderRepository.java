@@ -1,6 +1,7 @@
 package com.firstone.pm.posapp.repository;
 
 import com.firstone.pm.posapp.model.Order;
+import com.firstone.pm.posapp.model.User;
 import jakarta.validation.constraints.PastOrPresent;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -17,7 +18,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     List<Order> findByBranchIdAndCreatedAtBetween(Long branchId, LocalDateTime from, LocalDateTime to);
 
-    List<Order> findByCashierIdAndCreatedAtBetween(Long cashier_id, @PastOrPresent LocalDateTime createdAt, @PastOrPresent LocalDateTime createdAt2);
+    List<Order> findByCashierAndCreatedAtBetween(User cashier, @PastOrPresent LocalDateTime createdAt, @PastOrPresent LocalDateTime createdAt2);
 
     List<Order> findTop5ByBranchIdOrderByCreatedAtDesc(Long branchId);
 }
