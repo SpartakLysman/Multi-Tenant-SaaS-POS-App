@@ -67,8 +67,8 @@ public class OrderController {
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse> deleteOrder(@PathVariable Long id) throws Exception {
         ApiResponse apiResponse = new ApiResponse();
-        apiResponse.setMessage("Successfully deleted order");
         orderService.deleteOrder(id);
+        apiResponse.setMessage("Order successfully deleted");
 
         return ResponseEntity.ok(apiResponse);
     }
