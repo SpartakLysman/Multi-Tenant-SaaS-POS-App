@@ -105,6 +105,7 @@ public class ShiftReportServiceImpl implements ShiftReportService {
         shiftReport.setTopSellingProducts(getTopSellingProducts(orders));
         shiftReport.setPaymentSummaries(getPaymentSummaries(orders, totalSales));
         shiftReport.setRefunds(refunds);
+        shiftReport.setShiftEnd(shiftReport.getShiftEnd());
 
         ShiftReport savedReport = shiftReportRepository.save(shiftReport);
         return ShiftReportMapper.toDTO(savedReport);
@@ -161,7 +162,7 @@ public class ShiftReportServiceImpl implements ShiftReportService {
         List<Refund> refunds = refundRepository.findByCashierIdAndCreatedAtBetween(
                 currentUser.getId(),
                 shiftReport.getShiftStart(),
-                shiftReport.getShiftEnd()
+                now
         );
         double totalRefunds = refunds.stream()
                 .mapToDouble(refund -> refund.getAmount() != null ?
@@ -200,7 +201,7 @@ public class ShiftReportServiceImpl implements ShiftReportService {
                 cashier,
                 start,
                 end
-        ).orElseThrow(() -> new Exception("Shift report does not found for cashier"));
+        ).orElseThrow(() -> new Exception("Shift report does not found for date"));
 
         return ShiftReportMapper.toDTO(report);
     }
